@@ -1,9 +1,8 @@
-//Завдання 2 - таймер зворотного відліку
-//Напиши скрипт таймера, який здійснює зворотний відлік до певної дати.
+//Завдання 2 - таймер зворотного відліку до певної дати.
+
 //HTML містить готову розмітку таймера, поля вибору кінцевої дати і кнопку, по кліку на яку, таймер повинен запускатися.
-//Використовуй бібліотеку flatpickr для того, щоб дозволити користувачеві кросбраузерно вибрати кінцеву дату і час в одному елементі інтерфейсу. 
 
-
+//Використовуй бібліотеку flatpickr для того, щоб дозволити користувачеві кросбраузерно вибрати кінцеву дату і час в одному елементі інтерфейсу.
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
 
@@ -32,7 +31,7 @@ const options = {
     const currentDate=new Date();
     targetDate=selectedDates[0];
     console.log(targetDate);
-    //console.log(selectedDates[0]);
+   
   if ((selectedDates[0]-currentDate) <= 0 ) {
   alert("Please choose a date in the future");
   } else {
@@ -69,7 +68,39 @@ function timerBack() {
       return { days, hours, minutes, seconds };
     }
     
-    console.log(convertMs(ms));
+    const timeObject =  convertMs(ms);
+
+    console.log(timeObject);
+
+    const days=timeObject.days;
+    const hours=timeObject.hours;
+    const minutes=timeObject.minutes;
+    const seconds=timeObject.seconds;
+
+   
+    shownDays.textContent=`${days.toString.padStart(2,"0")}`;
+    shownHours.textContent=`${hours.toString.padStart(2,"0")}`;
+    shownMinutes.textContent=`${minutes.toString.padStart(2,"0")}`;
+    shownSeconds.textContent=`${seconds.toString.padStart(2,"0")}`;
+    
+
+
+    //function addLeadingZero () {
+    //const days=timeObject.days.toString.padStart(2,"0");
+    //const hours=timeObject.hours.toString.padStart(2,"0");;
+    //const minutes=timeObject.minutes.toString.padStart(2,"0");;
+    //const seconds=timeObject.seconds.toString.padStart(2,"0");;
+    //return;
+    //}
+    //addLeadingZero();
+    
+
+    //console.log(days);
+    //console.log(hours);
+    //console.log(minutes);
+    //console.log(seconds);
+
+
 
 
     }, 1000);
@@ -78,5 +109,6 @@ function timerBack() {
     clearInterval(id);
   }
   
+
 }
 
