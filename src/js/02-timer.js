@@ -68,23 +68,37 @@ function timerBack() {
       return { days, hours, minutes, seconds };
     }
     
-    const timeObject =  convertMs(ms);
 
+    const timeObject =  convertMs(ms);
     console.log(timeObject);
 
-    const days=timeObject.days;
-    const hours=timeObject.hours;
-    const minutes=timeObject.minutes;
-    const seconds=timeObject.seconds;
+    //???????????????????????????????????????????????????????????????????????
 
-   
-    shownDays.textContent=`${days.toString.padStart(2,"0")}`;
-    shownHours.textContent=`${hours.toString.padStart(2,"0")}`;
-    shownMinutes.textContent=`${minutes.toString.padStart(2,"0")}`;
-    shownSeconds.textContent=`${seconds.toString.padStart(2,"0")}`;
+    //Варіант 1 (в консолі помилка number.toString.padStart() is not a function)
+    function addLeadingZero(number) {
+      return number.toString.padStart(2,"0");
+    }
+    shownDays.textContent=addLeadingZero(timeObject.days);
+    shownHours.textContent=addLeadingZero(timeObject.hours);
+    shownMinutes.textContent=addLeadingZero(timeObject.minutes);
+    shownSeconds.textContent=addLeadingZero(timeObject.seconds);
+
+    console.log(addLeadingZero());
+
+   //Варіант 2(в консолі помилка days.toString.padStart() is not a function)
+   // const days=timeObject.days;
+   // const hours=timeObject.hours;
+    //const minutes=timeObject.minutes;
+    //const seconds=timeObject.seconds;
+
+    //shownDays.textContent=`${days.toString.padStart(2,"0")}`;
+    //shownHours.textContent=`${hours.toString.padStart(2,"0")}`;
+    //shownMinutes.textContent=`${minutes.toString.padStart(2,"0")}`;
+    //shownSeconds.textContent=`${seconds.toString.padStart(2,"0")}`;
     
 
 
+    //Варіант 3
     //function addLeadingZero () {
     //const days=timeObject.days.toString.padStart(2,"0");
     //const hours=timeObject.hours.toString.padStart(2,"0");;
@@ -92,8 +106,10 @@ function timerBack() {
     //const seconds=timeObject.seconds.toString.padStart(2,"0");;
     //return;
     //}
-    //addLeadingZero();
-    
+        
+
+
+
 
     //console.log(days);
     //console.log(hours);
