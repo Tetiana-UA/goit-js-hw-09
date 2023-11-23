@@ -19,6 +19,7 @@ btnStart.disabled=true;
 
 let targetDate;
 let ms;
+let intervalId;
 
 
 
@@ -31,7 +32,7 @@ const options = {
     const currentDate=new Date();
     targetDate=selectedDates[0];
     console.log(targetDate);
-   
+  
   if ((selectedDates[0]-currentDate) <= 0 ) {
   alert("Please choose a date in the future");
   } else {
@@ -46,7 +47,7 @@ flatpickr("#datetime-picker", options);
 btnStart.addEventListener("click", timerBack);
 
 function timerBack() {
-  id=setInterval(() => {
+  intervalId=setInterval(() => {
     const currentDate=new Date();
     ms = targetDate-currentDate;
     function convertMs(ms) {
@@ -72,59 +73,20 @@ function timerBack() {
     const timeObject =  convertMs(ms);
     console.log(timeObject);
 
-    //???????????????????????????????????????????????????????????????????????
-
-    //Варіант 1 (в консолі помилка number.toString.padStart() is not a function)
-    function addLeadingZero(number) {
-      return number.toString.padStart(2,"0");
-    }
     shownDays.textContent=addLeadingZero(timeObject.days);
     shownHours.textContent=addLeadingZero(timeObject.hours);
     shownMinutes.textContent=addLeadingZero(timeObject.minutes);
     shownSeconds.textContent=addLeadingZero(timeObject.seconds);
 
-    console.log(addLeadingZero());
-
-   //Варіант 2(в консолі помилка days.toString.padStart() is not a function)
-   // const days=timeObject.days;
-   // const hours=timeObject.hours;
-    //const minutes=timeObject.minutes;
-    //const seconds=timeObject.seconds;
-
-    //shownDays.textContent=`${days.toString.padStart(2,"0")}`;
-    //shownHours.textContent=`${hours.toString.padStart(2,"0")}`;
-    //shownMinutes.textContent=`${minutes.toString.padStart(2,"0")}`;
-    //shownSeconds.textContent=`${seconds.toString.padStart(2,"0")}`;
+    function addLeadingZero(number) {
+      return String(number).padStart(2,0);
+    }
     
-
-
-    //Варіант 3
-    //function addLeadingZero () {
-    //const days=timeObject.days.toString.padStart(2,"0");
-    //const hours=timeObject.hours.toString.padStart(2,"0");;
-    //const minutes=timeObject.minutes.toString.padStart(2,"0");;
-    //const seconds=timeObject.seconds.toString.padStart(2,"0");;
-    //return;
-    //}
-        
-
-
-
-
-    //console.log(days);
-    //console.log(hours);
-    //console.log(minutes);
-    //console.log(seconds);
-
-
-
-
-    }, 1000);
+  }, 1000);
 
   if (ms <= 0) {
     clearInterval(id);
   }
   
-
 }
 
