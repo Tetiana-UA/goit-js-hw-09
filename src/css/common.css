@@ -19,6 +19,7 @@ img {
 
 .timer {
   display: flex;
+  
   margin-top: 20px;
   width: 50px;
   gap: 10px;

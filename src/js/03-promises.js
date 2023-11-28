@@ -16,6 +16,7 @@ const refs={
 
 refs.form.addEventListener("submit", handleSubmit);
 
+
 let delay;
 let step;
 let amount;
@@ -25,6 +26,8 @@ let position;
 //Обробляємо і виводимо певну кількість(amount) промісів  з затримкою (delay), викликаючи функцію  createPromise в циклі for -  amount разів
 function handleSubmit(event) {
 event.preventDefault();
+refs.btn.disabled=true;
+
   delay=Number(refs.delayData.value);
   step=Number(refs.stepData.value);
   amount=refs.amountData.value;

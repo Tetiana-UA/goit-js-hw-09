@@ -50,6 +50,8 @@ function timerBack() {
   intervalId=setInterval(() => {
     const currentDate=new Date();
     ms = targetDate-currentDate;
+
+    //Функція конвертування мідісекунд в  год хв сек 
     function convertMs(ms) {
       // Number of milliseconds per unit of time
       const second = 1000;
@@ -65,28 +67,37 @@ function timerBack() {
       const minutes = Math.floor(((ms % day) % hour) / minute);
       // Remaining seconds
       const seconds = Math.floor((((ms % day) % hour) % minute) / second);
-    
-      return { days, hours, minutes, seconds };
+
+    // функція повертвє обєкт, з якого витягуємо (деструктуризуємо) властивості days, hours, minutes, seconds
+      return { days, hours, minutes, seconds }; 
     }
     
-
+    //В константу timeobject записуємо результат функціi конвертування ms (обєкт)
     const timeObject =  convertMs(ms);
     console.log(timeObject);
 
+    //В елементи сторінки запитуємо окремо кожну властивість, обробивши її функцією addLeadingZero
     shownDays.textContent=addLeadingZero(timeObject.days);
     shownHours.textContent=addLeadingZero(timeObject.hours);
     shownMinutes.textContent=addLeadingZero(timeObject.minutes);
     shownSeconds.textContent=addLeadingZero(timeObject.seconds);
 
+    //Додаємо 0 перед год, хв та сек
     function addLeadingZero(number) {
       return String(number).padStart(2,0);
     }
-    
-  }, 1000);
 
-  if (ms <= 0) {
-    clearInterval(id);
+    
+  //Перевіряємо, якщо різниця в часі менше 1 секунди, то зупиняємо таймер
+  if (ms < 1000) {
+    clearInterval(intervalId);
   }
   
+  }, 1000);
+  
+
 }
+  
+  
+
 

@@ -12,9 +12,11 @@ const body = document.querySelector('body');
 btnStart.addEventListener('click', startchangeColors);
 btnStop.addEventListener('click', stopChangeColors);
 let id;
+btnStop.disabled = true;
 
 function startchangeColors() {
     btnStart.disabled = true;
+    btnStop.disabled = false;
      id = setInterval(() => {
         function getRandomHexColor() {
           return `#${Math.floor(Math.random() * 16777215)
@@ -29,4 +31,5 @@ function startchangeColors() {
 function stopChangeColors() {
     clearInterval(id);
     btnStart.disabled = false;
+    btnStop.disabled = true;
 }    
